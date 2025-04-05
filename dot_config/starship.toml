@@ -1,0 +1,27 @@
+# ~/.config/starship.toml
+
+format = """
+$directory$git_branch$character
+"""
+
+add_newline = false
+
+[directory]
+style = "bold bright-blue"
+truncation_length = 2
+truncation_symbol = "…/"
+truncate_to_repo = false
+
+[git_branch]
+symbol = " "
+style = "bold bright-magenta"
+format = "[$symbol$branch]($style) "
+
+[character]
+success_symbol = "[❯](bold bright-blue)"
+error_symbol = "[❯](bold bright-red)"
+vicmd_symbol = "[❮](bold bright-yellow)"
+
+[git_status]
+disabled = true
+
