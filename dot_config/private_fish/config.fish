@@ -4,25 +4,22 @@
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx PAGER less
+set -gx PATH /opt/homebrew/bin $PATH
+set -gx PATH ~/.local/bin $PATH
 
-set -gx PATH /opt/homebrew/bin $PATH  # Homebrew on Apple Silicon
-set -gx PATH ~/.local/bin $PATH       # Common user scripts
+# Activate tools
 mise activate fish | source
-
-# zoxide
 zoxide init fish | source
-
-# atuin
-atuin init fish | source
-
-# starship
+atuin init fish | source 
 starship init fish | source
+fzf --fish | source
 
 # Aliases (fish shell uses 'alias' too)
 alias cat="bat"
 alias find="fd"
 alias ls="eza -alh"
-# alias cd="z"
+alias cd="z"
+alias vi="nvim"
 
 # Abbreviations (expand-as-you-type)
 abbr -a gco "git checkout"
@@ -33,9 +30,3 @@ abbr -a gp "git push"
 
 # Disable greeting
 set fish_greeting ""
-
-# Prompt for optional vi mode
-# fish_vi_key_bindings
-
-# Add this if you have FZF installed with keybinds
-# [ -f ~/.fzf.fish ] && source ~/.fzf.fish
