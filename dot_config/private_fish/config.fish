@@ -6,6 +6,7 @@ set -gx VISUAL nvim
 set -gx PAGER less
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH ~/.local/bin $PATH
+set -gx PATH /opt/homebrew/opt/postgresql@15/bin $PATH
 
 # Activate tools
 mise activate fish | source
