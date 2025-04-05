@@ -13,7 +13,7 @@ mise activate fish | source
 zoxide init fish | source
 
 # atuin
-# atuin init fish | source
+atuin init fish | source
 
 # starship
 starship init fish | source
@@ -37,6 +37,5 @@ set fish_greeting ""
 # Prompt for optional vi mode
 # fish_vi_key_bindings
 
-# 7. Misc: FZF keybindings (if installed)
-# Add this only if you have FZF installed with keybinds
+# Add this if you have FZF installed with keybinds
 # [ -f ~/.fzf.fish ] && source ~/.fzf.fish
