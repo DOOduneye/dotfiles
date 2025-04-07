@@ -1,0 +1,5 @@
+[tools]
+neovim = "latest"
+node = "latest"
+pandoc = "latest"
+pnpm = "latest"
