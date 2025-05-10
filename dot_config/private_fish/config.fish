@@ -14,20 +14,28 @@ zoxide init fish | source
 atuin init fish | source 
 starship init fish | source
 fzf --fish | source
+thefuck --alias | source 
 
 # Aliases (fish shell uses 'alias' too)
+alias c="clear"
 alias cat="bat"
 alias find="fd"
 alias ls="eza -alh"
 alias cd="z"
 alias vi="nvim"
 
-# Abbreviations (expand-as-you-type)
-abbr -a gco "git checkout"
-abbr -a gs "git status"
+alias gm="git checkout main"
+alias gmp="git checkout main && git pull"
+alias gg="git log --online --graph --all"
+alias gd="git diff main | bat --language=diff"
+alias gl="git log -1 HEAD"
+alias gp="git push"
+alias gs="git status"
+alias gco="git checkout"
+alias gu="git reset --soft HEAD~1"
+
 abbr -a gcm "git commit -m"
-abbr -a gl "git pull"
-abbr -a gp "git push"
+abbr -a gunstage "git reset HEAD --"
 
 # Disable greeting
 set fish_greeting ""
