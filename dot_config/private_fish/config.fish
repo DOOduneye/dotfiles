@@ -17,6 +17,7 @@ fzf --fish | source
 thefuck --alias | source 
 
 # Aliases (fish shell uses 'alias' too)
+alias restart="source ~/.config/fish/config.fish"
 alias c="clear"
 alias cat="bat"
 alias find="fd"
