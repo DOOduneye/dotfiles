@@ -8,7 +8,7 @@ truncate_to_repo = false
 format = "[$path]($style) "
 
 [git_branch]
-symbol = " "
+symbol = " "
 style = "bright-black"
 format = "[$symbol$branch]($style) "
 
@@ -16,4 +16,3 @@ format = "[$symbol$branch]($style) "
 success_symbol = "[❯](white)"
 error_symbol = "[❯](red)"
 vicmd_symbol = "[❮](white)"
-
