@@ -7,6 +7,9 @@ set -gx PAGER less
 set -gx DIRENV_LOG_FORMAT ""  # silence direnv loading/unloading messages
 set fish_greeting ""
 
+# Disable flow control (frees Ctrl+s for tmux-resurrect)
+stty -ixon 2>/dev/null
+
 # === PATH ===
 fish_add_path /opt/homebrew/bin
 fish_add_path ~/.local/bin
