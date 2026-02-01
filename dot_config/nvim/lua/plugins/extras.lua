@@ -1,4 +1,7 @@
 return {
+  -- Snacks.nvim (required for claudecode.nvim terminal)
+  { "folke/snacks.nvim", lazy = false, priority = 1000, opts = {} },
+
   -- Better file explorer
   { import = "astrocommunity.file-explorer.oil-nvim" },
 
