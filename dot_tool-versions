@@ -1,2 +1,3 @@
-neovim latest
-
+# Global tool versions (read by mise with idiomatic_version_file=true)
+# Most tools defined in ~/.config/mise/config.toml
+nodejs 22.0.0
