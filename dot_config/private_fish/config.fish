@@ -4,6 +4,7 @@
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx PAGER less
+set -gx DIRENV_LOG_FORMAT ""  # silence direnv loading/unloading messages
 set fish_greeting ""
 
 # === PATH ===
