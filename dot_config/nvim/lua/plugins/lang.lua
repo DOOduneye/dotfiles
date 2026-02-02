@@ -16,6 +16,7 @@ return {
         "yamlls",        -- YAML
         "dockerls",      -- Dockerfile
         "marksman",      -- Markdown
+        "gopls",         -- Go
       },
     },
   },
@@ -38,6 +39,9 @@ return {
         "css",
         "html",
         "bash",
+        "go",
+        "gomod",
+        "gosum",
       },
     },
   },
