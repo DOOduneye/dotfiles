@@ -1,23 +1,44 @@
+-- Language support is handled by Mason + LSP
+-- AstroNvim auto-installs LSPs when you open files of that type
+-- You can also manually install via :Mason
+
 return {
-  -- TypeScript/JavaScript
-  { import = "astrocommunity.pack.typescript" },
+  -- Ensure these LSPs/formatters/linters are installed
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {
+        "lua_ls",        -- Lua
+        "ts_ls",         -- TypeScript/JavaScript
+        "pyright",       -- Python
+        "tailwindcss",   -- Tailwind CSS
+        "jsonls",        -- JSON
+        "yamlls",        -- YAML
+        "dockerls",      -- Dockerfile
+        "marksman",      -- Markdown
+      },
+    },
+  },
 
-  -- Python
-  { import = "astrocommunity.pack.python" },
-
-  -- Tailwind CSS
-  { import = "astrocommunity.pack.tailwindcss" },
-
-  -- JSON/YAML
-  { import = "astrocommunity.pack.json" },
-  { import = "astrocommunity.pack.yaml" },
-
-  -- Markdown
-  { import = "astrocommunity.pack.markdown" },
-
-  -- Docker
-  { import = "astrocommunity.pack.docker" },
-
-  -- Lua (for nvim config)
-  { import = "astrocommunity.pack.lua" },
+  -- Additional treesitter parsers
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "lua",
+        "typescript",
+        "tsx",
+        "javascript",
+        "python",
+        "json",
+        "yaml",
+        "dockerfile",
+        "markdown",
+        "markdown_inline",
+        "css",
+        "html",
+        "bash",
+      },
+    },
+  },
 }
