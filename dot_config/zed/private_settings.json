@@ -1,0 +1,171 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "cli_default_open_behavior": "new_window",
+  "agent_servers": {
+    "pi-acp": {
+      "type": "registry"
+    }
+  },
+  "edit_predictions": {
+    "mode": "eager"
+  },
+  "agent": {
+    "default_profile": "ask",
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-opus-4-7-latest",
+      "enable_thinking": true,
+      "effort": "medium"
+    },
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "redact_private_values": false,
+  "message_editor": {
+    "auto_replace_emoji_shortcode": false,
+  },
+  "scrollbar": {
+    "show": "auto",
+  },
+  "code_lens": "on",
+  "inline_code_actions": false,
+  "autoscroll_on_clicks": true,
+  "current_line_highlight": "all",
+  "cursor_shape": "bar",
+  "text_rendering_mode": "platform_default",
+  "ui_font_weight": 400.0,
+  "buffer_line_height": "comfortable",
+  "buffer_font_weight": 400.0,
+  "excerpt_context_lines": 5,
+  "expand_excerpt_lines": 10,
+  "notification_panel": {
+    "dock": null,
+    "button": true,
+  },
+  "outline_panel": {
+    "dock": "left",
+    "button": false,
+  },
+  "collaboration_panel": {
+    "dock": "left",
+    "button": true,
+  },
+  "git_panel": {
+    "dock": "right",
+    "tree_view": true,
+    "button": true,
+  },
+  "search": {
+    "center_on_match": false,
+    "button": true,
+  },
+  "debugger": {
+    "button": false,
+  },
+  "diagnostics": {
+    "button": false,
+  },
+  "status_bar": {
+    "cursor_position_button": false,
+    "active_encoding_button": "non_utf8",
+    "active_language_button": true,
+  },
+  "toolbar": {
+    "code_actions": false,
+    "selections_menu": false,
+    "agent_review": false,
+    "quick_actions": false,
+  },
+  "tab_bar": {
+    "show": true,
+  },
+  "ui_font_family": ".SystemUIFont",
+  "buffer_font_family": ".ZedMono",
+  "disable_ai": false,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "colorize_brackets": true,
+  "terminal": {
+    "button": true,
+    "shell": {
+      "program": "/opt/homebrew/bin/fish",
+    },
+    "font_size": 14.0,
+  },
+  "project_panel": {
+    "dock": "left",
+    "button": true,
+    "auto_fold_dirs": true,
+    "scrollbar": {
+      "show": "never",
+    },
+    "sticky_scroll": true,
+    "hide_root": true
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": true,
+    },
+  },
+  "preview_tabs": {
+    "enabled": false,
+  },
+  "relative_line_numbers": "enabled",
+  "sticky_scroll": {
+    "enabled": true,
+  },
+  "gutter": {
+    "folds": true,
+    "runnables": true,
+    "line_numbers": true,
+  },
+  "minimap": {
+    "thumb": "hover",
+    "display_in": "active_editor",
+    "show": "auto",
+    "max_width_columns": 40
+  },
+  "show_edit_predictions": true,
+  "hard_tabs": false,
+  "base_keymap": "VSCode",
+  "icon_theme": {
+    "mode": "light",
+    "light": "Colored Zed Icons Theme Light",
+    "dark": "Colored Zed Icons Theme Dark",
+  },
+  "ui_font_size": 14.0,
+  "buffer_font_size": 12.0,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "GitHub Dark",
+  },
+  "format_on_save": "on",
+  "formatter": "language_server",
+  "auto_install_extensions": {
+    "github-theme": true,
+    "colored-zed-icons-theme": true,
+    "sql": true,
+  },
+  "context_servers": {
+    "react-grab-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@react-grab/mcp",
+        "--stdio"
+      ],
+      "env": {}
+    }
+  },
+}

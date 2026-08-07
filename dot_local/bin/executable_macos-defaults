@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+#
+# macos-defaults — apply the macOS settings that are worth scripting.
+#
+# Deliberately run by hand rather than automatically on `chezmoi apply`, because
+# it changes the feel of the machine and you should be looking at it when it
+# does. Everything else lives in System Settings; see SETUP.md for that list and
+# for why the split falls where it does.
+#
+# Every value here is one that is genuinely non-default, so this reproduces a
+# specific machine rather than encoding somebody's opinion. Verified on macOS
+# 15.2 (24C101).
+#
+# Two things to know about how `defaults` works, because they explain most
+# "this command did nothing" confusion:
+#
+#   1. `-g` is shorthand for NSGlobalDomain, the preference domain every
+#      application reads. Other lines target an application's own domain.
+#   2. Applications read their domain once at launch and cache it in memory.
+#      Writing the file on disk does not reach a running process. Restarting
+#      Dock is enough for the Dock settings; the NSGlobalDomain ones need a
+#      logout and login.
+
+set -euo pipefail
+
+if [[ "$(uname -s)" != "Darwin" ]]; then
+  echo "macos-defaults: not macOS, nothing to do." >&2
+  exit 0
+fi
+
+echo "Applying macOS defaults..."
+
+# === Keyboard ===
+# Both values are measured in 15-millisecond frames, not milliseconds.
+# KeyRepeat 1 repeats every ~15ms; InitialKeyRepeat 10 waits ~150ms before
+# repeating starts. System Settings' fastest positions are 2 and 15, which is
+# the entire reason these are written directly.
+defaults write -g KeyRepeat -int 1
+defaults write -g InitialKeyRepeat -int 10
+
+# The setting that makes the two above matter, and the one with no checkbox
+# anywhere in System Settings. `true` (macOS's default) makes holding a key open
+# the accent picker — hold `e`, get è é ê ë. `false` makes it repeat instead.
+# Leaving this at the default is why fast key repeat feels inconsistent between
+# applications.
+defaults write -g ApplePressAndHoldEnabled -bool false
+
+# === Dock ===
+defaults write com.apple.dock launchanim -bool false        # no GUI toggle exists
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 52             # GUI is a slider you cannot land on a number
+defaults write com.apple.dock mru-spaces -bool false        # stop macOS reordering Spaces, so Space 3 stays Space 3
+
+# Disable the bottom-right hot corner. Recent macOS defaults it to Quick Note,
+# which fires whenever the pointer parks in that corner. 1 means disabled.
+# Hot corners live in the Dock's domain, so the killall below applies them.
+defaults write com.apple.dock wvous-br-corner -int 1
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+# === Windows and sound ===
+defaults write -g AppleMiniaturizeOnDoubleClick -bool false # double-clicking a title bar should not minimise
+defaults write -g com.apple.sound.beep.volume -float 0      # mute the system alert beep
+
+# Note on what is NOT here: trackpad settings. On macOS 13 and later they are
+# held by daemons that cache them and rewrite the plist when System Settings
+# opens, so scripting them produces changes that silently revert. Set those in
+# System Settings — in particular, leave secondary click on "two fingers" and
+# not "click bottom right corner".
+
+killall Dock
+
+cat <<'EOF'
+
+Done. The Dock has been restarted, so its settings are live.
+
+The NSGlobalDomain settings — key repeat, press-and-hold, double-click, alert
+volume — are read by each application when it launches. Log out and back in for
+them to take effect everywhere.
+
+Verify afterwards with:
+  defaults read -g KeyRepeat              # expect 1
+  defaults read -g ApplePressAndHoldEnabled  # expect 0
+EOF

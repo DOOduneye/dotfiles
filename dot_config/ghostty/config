@@ -1,0 +1,35 @@
+# ~/.config/ghostty/config
+#
+# Ghostty reads this path on macOS as well as
+# ~/Library/Application Support/com.mitchellh.ghostty/config. Keeping it here
+# means it sits alongside every other config and chezmoi can manage it. If the
+# Application Support copy exists it will also be read, so delete it rather than
+# leave two files that can disagree.
+#
+# `ghostty +show-config` prints what is actually in effect.
+# `ghostty +list-fonts` and `ghostty +list-themes` print the valid values below.
+
+# === Appearance ===
+# Recreates the Tokyo Night profile that was previously a Terminal.app .terminal
+# file. Ghostty ships the theme built in, so nothing needs importing.
+theme = TokyoNight
+
+# The family name must match exactly what `ghostty +list-fonts` reports. The
+# "Mono" suffix is part of the name of the Nerd Font build, not a description.
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 16
+
+# Vertical bar, blinking — matching the old Terminal.app profile.
+cursor-style = bar
+cursor-style-blink = true
+
+# === Keybindings ===
+# Send a literal newline instead of submitting — used by Claude Code and other
+# REPL-style prompts for multi-line input.
+keybind = shift+enter=text:\n
+
+# === Shell ===
+# fish is already the login shell (see SETUP.md), so this is belt and braces:
+# it makes Ghostty correct even before chsh has been run on a fresh machine.
+command = /opt/homebrew/bin/fish
+shell-integration = fish

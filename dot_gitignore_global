@@ -1,0 +1,30 @@
+# Applies to every repository on this machine via core.excludesfile.
+#
+# Only machine and editor noise belongs here — things that are true because of
+# how *you* work, not because of what the project is. Anything every contributor
+# would need ignored belongs in that project's own .gitignore instead, so they
+# get it too.
+#
+# This file is never committed to the repositories it affects, so it is safe in
+# repositories you do not control.
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+.zed/
+
+# direnv — the local env file is machine-specific by design
+.envrc.local
+.direnv/

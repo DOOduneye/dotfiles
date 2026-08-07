@@ -1,0 +1,70 @@
+" ~/.vimrc — deliberately minimal.
+"
+" This is not the editor. nvim is (`vi` is aliased to it in config.fish). This
+" exists so that plain vim is bearable when nvim is not available: over ssh, in
+" a container, on a box you do not control, or when an nvim plugin update has
+" broken something and you need to edit a file anyway.
+"
+" No plugin manager and no plugins on purpose. Nothing here can fail to load.
+
+set nocompatible
+
+" === Display ===
+syntax on
+set number
+set relativenumber
+set ruler
+set showcmd
+set laststatus=2
+set scrolloff=5
+set nowrap
+set list
+set listchars=tab:»\ ,trail:·,nbsp:␣
+
+" === Indentation ===
+filetype plugin indent on
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set autoindent
+set smartindent
+
+" === Search ===
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
+" === Behaviour ===
+set hidden
+set backspace=indent,eol,start
+set mouse=a
+set clipboard=unnamed
+set splitbelow
+set splitright
+set wildmenu
+set wildmode=longest:full,full
+set ttimeoutlen=10
+
+" Keep the noise out of the working directory
+set noswapfile
+set nobackup
+set undofile
+set undodir=~/.vim/undo//
+if !isdirectory($HOME . "/.vim/undo")
+  call mkdir($HOME . "/.vim/undo", "p", 0700)
+endif
+
+" === Keys ===
+let mapleader = " "
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+
+" Return to the last cursor position when reopening a file
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif

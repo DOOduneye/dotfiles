@@ -1,0 +1,33 @@
+[user]
+	name = DOOduneye
+	email = davidoduneye1@gmail.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	excludesfile = ~/.gitignore_global
+
+[push]
+	default = simple
+	autoSetupRemote = true
+
+[pull]
+	rebase = true
+
+[branch]
+	autoSetupMerge = simple
+
+[diff]
+	external = difft
+
+# Authentication is delegated to the gh CLI, which stores its token in the
+# macOS keychain. The empty first value clears any inherited helper — notably
+# `store`, which writes tokens to ~/.git-credentials in plaintext.
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
