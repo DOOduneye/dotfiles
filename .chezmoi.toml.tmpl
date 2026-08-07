@@ -1,0 +1,29 @@
+{{- /* Asked once, at `chezmoi init`. Answers are stored in
+       ~/.config/chezmoi/chezmoi.toml and every template branches on them, so one
+       repository produces an intentional machine rather than a fixed list plus
+       a set of things to remember to uninstall.
+
+       The point of the application questions is managed machines: if IT has
+       already put Slack or Ollama in /Applications, `brew install --cask` fails
+       with "It seems there is already an App at ...". Answering no here is
+       cleaner than fighting it.
+
+       To change an answer later, edit ~/.config/chezmoi/chezmoi.toml directly
+       or re-run `chezmoi init` after deleting it. */ -}}
+
+{{- $machine := promptStringOnce . "machine" "Machine type (work or personal)" "work" -}}
+{{- $isPersonal := eq $machine "personal" -}}
+
+{{- $ai := promptBoolOnce . "installAI" "Install AI tools (Claude, ChatGPT, Codex)" true -}}
+{{- $comms := promptBoolOnce . "installComms" "Install Slack and Zoom" true -}}
+{{- $media := promptBoolOnce . "installMedia" "Install Spotify" true -}}
+{{- $ollama := promptBoolOnce . "installOllama" "Install Ollama (say no if preinstalled)" $isPersonal -}}
+{{- $bitwarden := promptBoolOnce . "installBitwarden" "Install Bitwarden" $isPersonal -}}
+
+[data]
+    machine = {{ $machine | quote }}
+    installAI = {{ $ai }}
+    installComms = {{ $comms }}
+    installMedia = {{ $media }}
+    installOllama = {{ $ollama }}
+    installBitwarden = {{ $bitwarden }}

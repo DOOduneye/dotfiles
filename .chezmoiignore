@@ -1,0 +1,5 @@
+# Repo documentation. These live in the repo, not in $HOME — without this,
+# `chezmoi apply` would drop a stray ~/README.md in the home directory.
+README.md
+SETUP.md
+MIGRATION.md

@@ -1,0 +1,85 @@
+# ~/.Brewfile — install everything with `brew bundle --global install`
+#
+# Layer 1 and 2 of the install model live here (see SETUP.md):
+#   casks    = GUI applications
+#   formulae = machine-wide CLI tools you always want at latest
+#
+# Language runtimes are deliberately absent. node, python, go, postgres and
+# friends belong in a project's .mise.toml so two repos can disagree about
+# versions. If you find yourself adding one here, that is the signal it should
+# have been a project dependency.
+
+# No taps. Every package below is in homebrew/core or homebrew/cask, so this
+# file has no third-party dependencies to go stale.
+
+# === Shell and prompt ===
+brew "fish"
+brew "starship"
+brew "tmux"
+
+# === Dotfile and version management ===
+brew "chezmoi"
+brew "mise"
+
+# === Git ===
+brew "git"
+brew "gh"
+brew "lazygit"       # tmux prefix+g opens this in a popup
+brew "difftastic"    # .gitconfig sets diff.external = difft
+
+# === Shell tooling referenced by config.fish ===
+brew "zoxide"        # aliased to `cd`
+brew "atuin"         # history, bound to the up arrow
+brew "fzf"
+brew "bat"           # aliased to `cat`
+brew "eza"           # aliased to `ls`
+brew "fd"            # aliased to `find`
+brew "direnv"        # per-project env vars, keeps secrets out of this repo
+brew "ripgrep"       # nvim telescope depends on this
+
+# === General utilities ===
+brew "tree"
+brew "xh"
+brew "ffmpeg"
+
+# === Fonts ===
+cask "font-jetbrains-mono-nerd-font"   # starship and nvim need the glyphs
+
+# === Terminal and editors ===
+cask "ghostty"
+cask "zed"
+
+# === Everyday applications ===
+cask "raycast"
+cask "obsidian"
+cask "google-chrome"
+cask "hiddenbar"
+cask "appcleaner"
+
+{{ if .installAI -}}
+# === AI tools ===
+cask "claude"
+cask "chatgpt"
+cask "codex"
+{{ end -}}
+
+{{ if .installComms -}}
+# === Communication ===
+cask "slack"
+cask "zoom"
+{{ end -}}
+
+{{ if .installMedia -}}
+# === Media ===
+cask "spotify"
+{{ end -}}
+
+{{ if .installOllama -}}
+# === Local models ===
+cask "ollama"
+{{ end -}}
+
+{{ if .installBitwarden -}}
+# === Password manager ===
+cask "bitwarden"
+{{ end -}}
