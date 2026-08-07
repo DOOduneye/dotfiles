@@ -1,0 +1,107 @@
+{
+  "_comment": [
+    "Baseline Claude Code settings. The create_ prefix on the chezmoi source",
+    "file means this is written once on a new machine and then never touched",
+    "again — Claude Code appends approved permissions to this same file, and",
+    "those are treated as disposable local growth rather than something to",
+    "track. `chezmoi status` stays quiet no matter how much it accumulates.",
+    "",
+    "To change the baseline, edit the source file in the chezmoi repo. To reset",
+    "a machine back to it, delete ~/.claude/settings.json and run chezmoi apply.",
+    "",
+    "The allow list here is deliberately small: read-only inspection, git",
+    "operations that do not rewrite history or publish, and the tools this setup",
+    "actually installs. Anything else prompts once and you decide then."
+  ],
+
+  "model": "opus[1m]",
+  "effortLevel": "high",
+  "tui": "fullscreen",
+  "editorMode": "normal",
+  "promptSuggestionEnabled": false,
+  "agentPushNotifEnabled": true,
+  "remoteControlAtStartup": false,
+  "voiceEnabled": true,
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "worktree": {
+    "baseRef": "fresh"
+  },
+
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "posthog@claude-plugins-official": true,
+    "chrome-devtools-mcp@claude-plugins-official": true,
+    "obsidian-cli@obsidian-official-cli-skills": true
+  },
+
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
+
+  "permissions": {
+    "defaultMode": "auto",
+    "deny": [
+      "Bash(rm -rf:*)"
+    ],
+    "ask": [],
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(wc:*)",
+      "Bash(pbcopy)",
+
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git show:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git grep:*)",
+      "Bash(git stash show:*)",
+      "Bash(git fetch:*)",
+      "Bash(git remote get-url:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(git clone:*)",
+
+      "Bash(gh:*)",
+      "Bash(tmux:*)",
+      "Bash(open:*)",
+
+      "Bash(chezmoi status:*)",
+      "Bash(chezmoi diff:*)",
+      "Bash(chezmoi add:*)",
+      "Bash(chezmoi apply:*)",
+      "Bash(brew list:*)",
+      "Bash(brew install:*)",
+      "Bash(mise list:*)",
+      "Bash(mise doctor:*)",
+
+      "Bash(obsidian vault:*)",
+      "Bash(obsidian vaults:*)",
+      "Bash(obsidian read:*)",
+      "Bash(obsidian search:*)",
+      "Bash(obsidian files:*)",
+      "Bash(obsidian folders:*)",
+      "Bash(obsidian tags:*)",
+      "Bash(obsidian tasks:*)",
+
+      "WebSearch",
+      "WebFetch(domain:docs.claude.com)",
+      "WebFetch(domain:code.claude.com)",
+      "WebFetch(domain:github.com)",
+
+      "mcp__ide__getDiagnostics"
+    ]
+  }
+}
