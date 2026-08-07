@@ -20,7 +20,7 @@ zoxide init fish | source
 atuin init fish | source
 starship init fish | source
 fzf --fish | source
-thefuck --alias | source
+direnv hook fish | source
 
 # === Core Aliases ===
 alias c="clear"
@@ -30,6 +30,7 @@ alias ls="eza -alh"
 alias cd="z"
 alias vi="nvim"
 alias restart="source ~/.config/fish/config.fish"
+alias claude="claude --dangerously-skip-permissions"
 
 # === Git Aliases ===
 alias gm="git checkout main"

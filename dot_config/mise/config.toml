@@ -2,5 +2,11 @@
 idiomatic_version_file = true
 idiomatic_version_file_enable_tools = ["python", "node"]
 
+# Global tools only. Anything a specific project depends on belongs in that
+# project's .mise.toml so two repos can disagree about versions — that is the
+# whole reason mise exists. Language runtimes (node, python, go, postgres)
+# should almost never appear here.
 [tools]
 neovim = "latest"
+uv = "latest"
+pnpm = "latest"
