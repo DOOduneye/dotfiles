@@ -37,6 +37,23 @@ brew "fd"            # aliased to `find`
 brew "direnv"        # per-project env vars, keeps secrets out of this repo
 brew "ripgrep"       # nvim telescope depends on this
 
+# === Neovim toolchain ===
+# The nvim config uses Neovim's built-in vim.lsp.enable and vim.pack rather
+# than Mason and lazy.nvim, so the server binaries have to come from here.
+# Without them nvim still opens, it just has no language support.
+brew "tree-sitter-cli"                 # compiles treesitter parsers. NOT the
+                                       # `tree-sitter` formula, which is the
+                                       # library and installs no binary
+brew "lua-language-server"
+brew "gopls"
+brew "pyright"
+brew "typescript-language-server"
+brew "tailwindcss-language-server"
+brew "vscode-langservers-extracted"    # provides jsonls, html, css
+brew "yaml-language-server"
+brew "dockerfile-language-server"
+brew "marksman"                        # markdown
+
 # === General utilities ===
 brew "tree"
 brew "xh"

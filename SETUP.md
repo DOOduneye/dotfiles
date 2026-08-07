@@ -420,10 +420,44 @@ fetches them.
 
 ## Editors
 
-nvim is the editor, an AstroNvim configuration under `~/.config/nvim`. `vi` is
-aliased to it. On first launch, lazy.nvim installs plugins and Mason installs
-language servers — expect a minute of activity and some transient errors while
-that finishes.
+nvim is the editor, and `vi` is aliased to it. The configuration is three files
+and no framework:
+
+```
+~/.config/nvim/
+    init.lua          options, keymaps, autocommands
+    lua/plugins.lua   vim.pack.add plus each plugin's setup call
+    lua/lsp.lua       vim.lsp.enable, diagnostics, LspAttach keymaps
+```
+
+It requires Neovim 0.12, and depends on two things that ship with it. `vim.pack`
+is the built-in plugin manager: `vim.pack.add` clones anything missing and puts
+it on the runtimepath, with no lockfile and no lazy-loading DSL. `vim.lsp.enable`
+is the built-in LSP client configuration.
+
+That second one is why there is no Mason. nvim-lspconfig is installed but never
+required or set up — since v2 it ships `lsp/<server>.lua` files describing how to
+launch each server, and `vim.lsp.enable` reads them straight off the
+runtimepath. So lspconfig is pure data, and the server *binaries* come from
+Homebrew instead of Mason.
+
+The practical consequence: language support is only as good as what the Brewfile
+installed. If a server does not attach, check the binary is on `PATH` before
+suspecting the config. `:checkhealth lsp` lists what attached.
+
+Treesitter needs one more thing. nvim-treesitter's `main` branch compiles
+parsers using the `tree-sitter` CLI rather than bundling the compilation itself,
+so `tree-sitter-cli` is in the Brewfile. Note that the `tree-sitter` formula is
+the *library* and installs no binary — installing that one instead leaves you
+with no syntax highlighting and a confusing error.
+
+Parsers install on first launch, only for languages that are missing, so startup
+does not spawn a job every time. Refresh them with
+`:lua require("nvim-treesitter").update()`.
+
+Updating plugins is `:lua vim.pack.update()`. Removing one means deleting its
+line and its setup call from `plugins.lua`, then
+`:lua vim.pack.del({ "name" })` to take it off disk.
 
 `~/.vimrc` is a separate, deliberately minimal plain-vim configuration with no
 plugin manager and no plugins. It exists so that vim is bearable when nvim is not

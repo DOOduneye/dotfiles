@@ -75,14 +75,21 @@ Named here so that you notice their absence deliberately rather than halfway
 through a task:
 
 ```
-Shell history          atuin sync is not configured. Starting clean is the
-                       intended behaviour — see SETUP.md
-gh / AWS / gcloud      per-employer credentials, re-authenticated not copied
-kubectl contexts       same
-INTERN_MCP_BEARER_TOKEN  and anything like it. Employer-scoped, dies here
-Local databases        anything in postgres on this machine
-Uncommitted work       check every repository for unpushed branches and
-                       stashes before you hand the laptop over
+Shell history        atuin sync is not configured. Starting clean is the
+                     intended behaviour — see SETUP.md
+
+Credentials          gh, cloud provider CLIs, cluster contexts. These are
+                     scoped to an organisation and are re-authenticated on
+                     the new machine, never copied
+
+API tokens in the    anything exported from a shell config or a conf.d
+environment          file. These belong to the environment you are leaving
+                     and should not follow you
+
+Local databases      anything living in a local postgres, redis or similar
+
+Uncommitted work     check every repository for unpushed branches and
+                     stashes before handing the laptop over
 ```
 
 ---
@@ -247,9 +254,17 @@ Launch it once and let it finish:
 nvim
 ```
 
-lazy.nvim installs plugins and Mason installs language servers. Expect a minute
-of activity and some transient errors while that runs. Quit and reopen, then
-`:checkhealth` to confirm.
+`vim.pack` asks you to confirm installing the plugins, then clones them.
+Treesitter parsers compile afterwards, which takes a minute or two and prints
+progress. Quit and reopen once it settles.
+
+```vim
+:checkhealth lsp
+```
+
+Language servers come from Homebrew rather than Mason, so they are already
+installed by step 2.3 — nothing to do inside nvim. If a server does not attach,
+check the binary is on `PATH` first.
 
 ### 2.8 Claude Code
 

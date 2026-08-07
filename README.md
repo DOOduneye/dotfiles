@@ -8,22 +8,35 @@ macOS development environment, managed with [chezmoi](https://chezmoi.io).
 ## Quick setup
 
 ```sh
+# Apple's command line developer tools: git, a C compiler, system headers.
+# Homebrew needs them. Opens a GUI installer — wait for it to finish.
 xcode-select --install
+
+# Install Homebrew. Asks for your password, because it creates /opt/homebrew.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Put brew on PATH for this shell only. You are still in zsh here.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Clone this repo and write every config into place. Asks the setup questions.
+# The `--` splits the installer's arguments from chezmoi's.
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply DOOduneye
+
+# Install everything in ~/.Brewfile, which the step above just wrote.
+# `--global` is what points brew at ~/.Brewfile rather than the current folder.
 brew bundle --global install
 
+# Register fish as an allowed login shell. `tee -a` appends to a root-owned
+# file; `sudo echo >>` fails, because your shell does the redirect, not sudo.
 echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+
+# Make it the login shell. Refuses shells missing from /etc/shells, hence the
+# order. Applies to new windows only.
 chsh -s /opt/homebrew/bin/fish
 ```
 
-`chezmoi init` asks whether this is a work or a personal machine, then which
-optional applications to install — so a machine where IT has already put Slack
-or Ollama in `/Applications` does not fight Homebrew over them. Answers are
-stored in `~/.config/chezmoi/chezmoi.toml` and asked once.
-
-`MIGRATION.md` covers the rest — SSH keys, macOS settings, and per-application
-sign-in.
+`chezmoi init` asks machine type and which optional apps to install, once, and
+stores the answers in `~/.config/chezmoi/chezmoi.toml`.
 
 ## What's included
 
@@ -31,7 +44,7 @@ sign-in.
 fish        shell
 starship    prompt
 tmux        multiplexer, prefix Ctrl-a
-nvim        editor (AstroNvim), aliased to `vi`
+nvim        editor, aliased to `vi`. 12 plugins, no framework
 vim         minimal no-plugin fallback config
 mise        per-project runtime versions
 zoxide      smart cd
@@ -44,9 +57,8 @@ ghostty     terminal
 zed         second editor
 ```
 
-Install layers are explained in [SETUP.md](SETUP.md#the-install-model): Homebrew
-casks for applications, Homebrew formulae for machine-wide CLI tools, mise for
-anything a project pins a version of.
+Casks for apps, formulae for machine-wide CLI, mise for anything a project pins.
+See [the install model](SETUP.md#the-install-model).
 
 ## Key bindings
 
@@ -79,7 +91,7 @@ gcm     git commit -m   (abbreviation)
 
 ## Machine-specific config
 
-Not tracked here, by design. Create locally as needed:
+Untracked by design. Create locally as needed:
 
 ```
 ~/.config/fish/conf.d/*.fish        work aliases, one-off PATH additions
@@ -87,10 +99,9 @@ Not tracked here, by design. Create locally as needed:
 <project>/.envrc                    secrets, loaded by direnv
 ```
 
-Secrets belong in an `.envrc` or the keychain, never in `config.fish`. This
-repository is public.
+This repository is public. Secrets go in an `.envrc` or the keychain.
 
-## Day to day
+## chezmoi management
 
 ```sh
 chezmoi status        what differs between this repo and the machine
