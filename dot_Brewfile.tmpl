@@ -47,7 +47,10 @@ brew "tree-sitter-cli"                 # compiles treesitter parsers. NOT the
 brew "lua-language-server"
 brew "gopls"
 brew "pyright"
-brew "typescript-language-server"
+brew "vtsls"                             # TypeScript. Bundles its own tsserver;
+                                       # typescript-language-server cannot be used
+                                       # because brew ships TypeScript 7, which no
+                                       # longer provides tsserver at all
 brew "tailwindcss-language-server"
 brew "vscode-langservers-extracted"    # provides jsonls, html, css
 brew "yaml-language-server"

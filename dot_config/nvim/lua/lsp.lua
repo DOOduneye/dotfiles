@@ -8,10 +8,20 @@
 -- Server binaries come from Homebrew (see the Brewfile), not from Mason. If a
 -- server does not start, check the binary is on PATH first — :checkhealth lsp
 -- reports which ones attached.
+--
+-- Two servers have conditions worth knowing:
+--
+--   gopls  needs the Go toolchain itself, which is a per-project runtime and so
+--          comes from mise rather than the Brewfile. It attaches inside a Go
+--          project where mise has provided `go`, and not in a scratch file.
+--
+--   vtsls  is used instead of typescript-language-server, which cannot work
+--          here: Homebrew now ships TypeScript 7, and that release provides no
+--          tsserver for it to drive. vtsls bundles its own.
 
 vim.lsp.enable({
   "lua_ls",
-  "ts_ls",
+  "vtsls",
   "pyright",
   "tailwindcss",
   "jsonls",
