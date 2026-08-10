@@ -71,6 +71,8 @@ prefix + | / -    split vertical / horizontal
 prefix + g        lazygit popup
 prefix + r        reload config
 prefix + I        install plugins
+prefix + Ctrl-s   save session state
+prefix + Ctrl-r   restore session state
 Ctrl + h/j/k/l    navigate panes
 Ctrl + Space      zoom pane
 ```
