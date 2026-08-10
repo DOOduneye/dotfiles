@@ -45,7 +45,6 @@ each and decide whether it is worth recreating:
 
 ```sh
 cat ~/.config/fish/conf.d/*.fish            # work aliases
-cat ~/.config/tmux-sessionizer/dirs         # project directories tmux scans
 ```
 
 Most of it will be specific to the employer you are leaving and not worth
@@ -336,7 +335,6 @@ Recreate what you decided to keep from step 1.2:
 
 ```sh
 $EDITOR ~/.config/fish/conf.d/work.fish
-mkdir -p ~/.config/tmux-sessionizer && $EDITOR ~/.config/tmux-sessionizer/dirs
 ```
 
 Secrets go in a project `.envrc` rather than here. `direnv` is installed and

@@ -65,7 +65,6 @@ See [the install model](SETUP.md#the-install-model).
 tmux, prefix `Ctrl-a`:
 
 ```
-prefix + f        fuzzy find projects (sessionizer)
 prefix + s        session tree
 prefix + ( / )    previous / next session
 prefix + | / -    split vertical / horizontal
@@ -94,9 +93,8 @@ gcm     git commit -m   (abbreviation)
 Untracked by design. Create locally as needed:
 
 ```
-~/.config/fish/conf.d/*.fish        work aliases, one-off PATH additions
-~/.config/tmux-sessionizer/dirs     project directories to scan
-<project>/.envrc                    secrets, loaded by direnv
+~/.config/fish/conf.d/*.fish    work aliases, one-off PATH additions
+<project>/.envrc                secrets, loaded by direnv
 ```
 
 This repository is public. Secrets go in an `.envrc` or the keychain.
