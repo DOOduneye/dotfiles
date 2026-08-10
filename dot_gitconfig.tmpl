@@ -1,6 +1,18 @@
+{{- if eq .machine "work" }}
+[user]
+	name = David Oduneye
+	email = david.oduneye@klaviyo.com
+
+[includeIf "gitdir:~/personal/"]
+	path = ~/.gitconfig-personal
+{{- else }}
 [user]
 	name = DOOduneye
 	email = davidoduneye1@gmail.com
+
+[includeIf "gitdir:~/work/"]
+	path = ~/.gitconfig-work
+{{- end }}
 
 [init]
 	defaultBranch = main
@@ -21,9 +33,6 @@
 [diff]
 	external = difft
 
-# Authentication is delegated to the gh CLI, which stores its token in the
-# macOS keychain. The empty first value clears any inherited helper — notably
-# `store`, which writes tokens to ~/.git-credentials in plaintext.
 [credential "https://github.com"]
 	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
