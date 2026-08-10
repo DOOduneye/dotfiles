@@ -76,16 +76,24 @@ cask "google-chrome"
 cask "hiddenbar"
 cask "appcleaner"
 
-{{ if .installAI -}}
+{{ if or .installAI .installChatGPT -}}
 # === AI tools ===
+{{ end -}}
+{{ if .installAI -}}
 cask "claude"
-cask "chatgpt"
 cask "codex"
 {{ end -}}
+{{ if .installChatGPT -}}
+cask "chatgpt"
+{{ end -}}
 
-{{ if .installComms -}}
+{{ if or .installSlack .installZoom -}}
 # === Communication ===
+{{ end -}}
+{{ if .installSlack -}}
 cask "slack"
+{{ end -}}
+{{ if .installZoom -}}
 cask "zoom"
 {{ end -}}
 

@@ -14,8 +14,10 @@
 {{- $machine := promptStringOnce . "machine" "Machine type (work or personal)" "work" -}}
 {{- $isPersonal := eq $machine "personal" -}}
 
-{{- $ai := promptBoolOnce . "installAI" "Install AI tools (Claude, ChatGPT, Codex)" true -}}
-{{- $comms := promptBoolOnce . "installComms" "Install Slack and Zoom" true -}}
+{{- $ai := promptBoolOnce . "installAI" "Install Claude and Codex" true -}}
+{{- $chatgpt := promptBoolOnce . "installChatGPT" "Install ChatGPT" true -}}
+{{- $slack := promptBoolOnce . "installSlack" "Install Slack" true -}}
+{{- $zoom := promptBoolOnce . "installZoom" "Install Zoom" true -}}
 {{- $media := promptBoolOnce . "installMedia" "Install Spotify" true -}}
 {{- $ollama := promptBoolOnce . "installOllama" "Install Ollama (say no if preinstalled)" $isPersonal -}}
 {{- $bitwarden := promptBoolOnce . "installBitwarden" "Install Bitwarden" $isPersonal -}}
@@ -23,7 +25,9 @@
 [data]
     machine = {{ $machine | quote }}
     installAI = {{ $ai }}
-    installComms = {{ $comms }}
+    installChatGPT = {{ $chatgpt }}
+    installSlack = {{ $slack }}
+    installZoom = {{ $zoom }}
     installMedia = {{ $media }}
     installOllama = {{ $ollama }}
     installBitwarden = {{ $bitwarden }}

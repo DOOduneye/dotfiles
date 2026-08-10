@@ -143,8 +143,10 @@ Brewfile installs. They are stored, so this is asked once per machine.
 
 ```
 Machine type (work or personal) [work]:
-Install AI tools (Claude, ChatGPT, Codex)? [yes]:
-Install Slack and Zoom? [yes]:
+Install Claude and Codex? [yes]:
+Install ChatGPT? [yes]:
+Install Slack? [yes]:
+Install Zoom? [yes]:
 Install Spotify? [yes]:
 Install Ollama (say no if preinstalled)? [no]:
 Install Bitwarden? [no]:

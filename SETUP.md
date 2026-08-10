@@ -29,8 +29,10 @@ of things to remember to uninstall.
 
 ```
 Machine type (work or personal) [work]:
-Install AI tools (Claude, ChatGPT, Codex)? [yes]:
-Install Slack and Zoom? [yes]:
+Install Claude and Codex? [yes]:
+Install ChatGPT? [yes]:
+Install Slack? [yes]:
+Install Zoom? [yes]:
 Install Spotify? [yes]:
 Install Ollama (say no if preinstalled)? [no]:
 Install Bitwarden? [no]:
@@ -40,7 +42,7 @@ The machine-type answer sets the defaults for the ones below it — Ollama and
 Bitwarden default to yes on a personal machine and no on a work one.
 
 The application questions exist because of managed machines specifically. If IT
-has already placed Slack or Ollama in `/Applications`, `brew install --cask`
+has already placed ChatGPT, Slack, Zoom, or Ollama in `/Applications`, `brew install --cask`
 fails with "It seems there is already an App at ...". `brew install --cask
 --adopt` can take over an identical existing app, but `brew bundle` exposes no
 way to pass that through, so answering no here is the clean path.
