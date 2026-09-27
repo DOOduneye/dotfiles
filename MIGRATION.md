@@ -176,8 +176,8 @@ brew bundle --global install
 ```
 
 This installs the CLI tools and every GUI application in one pass, including
-Ghostty, Zed, Obsidian, Claude, ChatGPT, Codex, Raycast, Chrome, Spotify, Hidden
-Bar, AppCleaner, and the JetBrains Mono Nerd Font. It takes a while.
+Ghostty, Zed, Obsidian, Claude, ChatGPT, Codex, Raycast, Spotify, Hidden Bar,
+AppCleaner, and the JetBrains Mono Nerd Font. It takes a while.
 
 ```sh
 brew bundle --global check    # expect "The Brewfile's dependencies are satisfied"
@@ -319,7 +319,8 @@ does not carry over is in `SETUP.md`; this is the checklist:
 [ ] Codex        sign in, then re-add model, model_reasoning_effort,
                  approvals_reviewer and any custom MCP servers
 [ ] Slack        sign in per workspace
-[ ] Chrome       sign in, let the profile sync
+[ ] Chrome       install from google.com/chrome if missing (not in the
+                 Brewfile), sign in, let the profile sync
 [ ] Spotify      sign in
 [ ] Zoom         sign in
 [ ] Hidden Bar   arrange the menu bar

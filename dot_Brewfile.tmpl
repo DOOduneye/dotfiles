@@ -72,7 +72,9 @@ cask "zed"
 # === Everyday applications ===
 cask "raycast"
 cask "obsidian"
-cask "google-chrome"
+# Chrome is deliberately absent. It updates itself, and macOS App Management
+# blocks Homebrew from adopting a copy that is already installed, even as root.
+# Install it from google.com/chrome.
 cask "hiddenbar"
 cask "appcleaner"
 

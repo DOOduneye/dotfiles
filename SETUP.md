@@ -66,7 +66,8 @@ by preference:
 ```
 Layer 1 — GUI applications (.app bundles)      → Homebrew casks
           Ghostty, Zed, Obsidian, Claude, ChatGPT, Codex, Raycast,
-          Chrome, Slack, Spotify, Hidden Bar, AppCleaner
+          Slack, Spotify, Hidden Bar, AppCleaner
+          (not Chrome: it self-updates and macOS blocks brew adopting it)
           Test: does it appear in /Applications?
 
 Layer 2 — machine-wide CLI, always at latest   → Homebrew formulae
@@ -201,6 +202,11 @@ ssh -T git@github.com     # expect: "Hi DOOduneye! You've successfully authentic
 ```
 
 Then revoke the old machine's key from that same page once you no longer need it.
+
+`~/.ssh/config` is managed by chezmoi. It stores the passphrase in the macOS
+Keychain on first use, so it is not asked for on every connection. The keys
+themselves are never tracked. Hosts that should stay out of a public repository
+go in `~/.ssh/config.local`, which the managed config includes.
 
 ### Authentication
 

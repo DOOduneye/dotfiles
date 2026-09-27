@@ -1,0 +1,16 @@
+# ~/.ssh/config — shared by every machine. Keys are never tracked; each machine
+# generates its own ~/.ssh/id_ed25519 (see SETUP.md), so one path works everywhere.
+#
+# Hosts that are private or specific to one machine go in ~/.ssh/config.local,
+# which is not in this repository. Include must come first: ssh uses the first
+# value it finds for each option.
+Include ~/.ssh/config.local
+
+Host *
+  # UseKeychain is macOS-only. IgnoreUnknown stops OpenSSH elsewhere rejecting it.
+  IgnoreUnknown UseKeychain
+  # Store the key passphrase in the login Keychain and load the key into the
+  # agent on first use, so the passphrase is typed once rather than per connection.
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_ed25519
